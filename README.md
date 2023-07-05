@@ -7,7 +7,7 @@ guarantees. When trained on real data, test accuracy is 88.3%.
 |-----------|:----:|:----:|:------:|
 | DP-MEPF-1 | 48.9 | 28.9 |  12.4  |
 | DP-MEPF-2 | 51.0 | 29.4 |  13.8  |
-| Ours      | 63.3 | 48.3 |  24.7  |
+| Ours      | 63.3 | 48.3 |  24.7  |.
 Synthetic CIFAR10 samples generated at different levels of privacy.
 ![image](cifar10.png)
 
