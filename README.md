@@ -10,5 +10,6 @@ guarantees. When trained on real data, test accuracy is 88.3%.
 | Ours      | 63.3 | 48.3 |  24.7  |
 
 Synthetic CIFAR10 samples generated at different levels of privacy.
- <img src="cifar10.png" width = "300" height = "200" alt="图片名称" align=center />
+
+ <img src="cifar10.png" width = "300" align=center />
 
