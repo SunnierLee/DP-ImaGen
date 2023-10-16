@@ -36,6 +36,7 @@ The query result will be saved as a .pth file into the folder /QueryResults
 You need change data_dir parameters into yours in /src/Pre-training/configs/cifar10_32/pretrain_s.yaml
 ```
 cd /src/Pre-training
+CUDA_VISIBLE_DEVICES=0,1,2,3 python main.py 
 ```
 
 # Citation
