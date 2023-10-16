@@ -35,11 +35,24 @@ The query result will be saved as a .pth file into the folder /QueryResults
 You need change data_dir parameters into yours in /src/Pre-training/configs/cifar10_32/pretrain_s.yaml
 ```
 cd /src/Pre-training
-CUDA_VISIBLE_DEVICES=0,1,2,3 python main.py 
+CUDA_VISIBLE_DEVICES=0,1,2,3 python main.py --mode train --worker_dir pt_dir
 ```
+After training, the checkpoint will be saved as /src/Pre-training/pt_dir/checkpoints/final_checkpoint.pth
 ## Fine-tuning
+You need change data_dir and ckpt parameters into yours in /src/PRIVIMAGE+D/configs/cifar10_32/train_eps_10.0_s.yaml
+```
+cd /src/PRIVIMAGE+D
+CUDA_VISIBLE_DEVICES=0,1,2,3 python main.py --mode train --worker_dir ft_dir
+```
+The FID of synthetic images will be saved in /src/PRIVIMAGE/ft_dir/stdout.txt
 ## Evaluation
-
+Use trained PRIVIMAGE to generate 50,000 images for training classifiers.
+```
+CUDA_VISIBLE_DEVICES=0,1,2,3 python main.py --mode eval --worker_dir ft_dir/sample50000 -- model.ckpt=/src/PRIVIMAGE+D/ft_dir/checkpoints/final_checkpoint.pth
+cd /src/Evaluation
+python downstream_classification.py --out_dir /src/PRIVIMAGE+D/ft_dir --train_dir /src/PRIVIMAGE+D/ft_dir/sample50000/samples --test_dir data_dir --dataset cifar10
+```
+The Classification Accuracy of trained classifiers on the testset will be saved into /src/PRIVIMAGE+D/ft_dir/evaluation_downstream_acc_log.txt
 # Citation
 If you find the provided code or checkpoints useful for your research, please consider citing our paper:
 ```
