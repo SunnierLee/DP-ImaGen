@@ -13,7 +13,7 @@ Download and preprocess CIFAR-10 and ImageNet dataset.
 ```
 # download CIFAR-10 and save it as /data_dir/cifar-10-python.tar.gz
 # download ImageNet and save it as a folder /data_dir/imagenet
-cd PRIVIMAGE+D
+cd /src/PRIVIMAGE+D
 # preprocess CIFAR-10
 python dataset_tool.py --source /data_dir/cifar-10-python.tar.gz --dest /data_dir/cifar10.zip
 python compute_fid_statistics.py --path /data_dir/cifar10.zip --file /data_dir/cifar10.npz
@@ -23,8 +23,7 @@ sh pd.sh
 ## Train semantic query function
 Train a semantic query function on the public dataset ImageNet.
 ```
-cd ..
-cd SemanticQuery
+cd /src/SemanticQuery
 CUDA_VISIBLE_DEVICES=0,1,2,3 torchrun --nproc_per_node=4 --nnodes=1 train_imagenet_classifier.py
 ```
 After training, the checkpoints will be saved with the according accuracy on the validate set. You can choose the checkpoint with the highest accuracy to query the semantics. Also you can use our trained checkpoint[url]
@@ -34,9 +33,9 @@ python query_semantics.py --weight_file weight_path --tar_dataset cifar10 --data
 ```
 The query result will be saved as a .pth file into the folder /QueryResults
 ## Pre-training
+You need change data_dir parameters into yours in /src/Pre-training/configs/cifar10_32/pretrain_s.yaml
 ```
-cd ..
-cd Pre-training
+cd /src/Pre-training
 ```
 
 # Citation
