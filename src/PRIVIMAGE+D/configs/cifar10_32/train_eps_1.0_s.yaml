@@ -1,0 +1,72 @@
+setup:
+  runner: train_dpdm_base
+  n_gpus_per_node: 1
+  n_nodes: 1
+  node_rank: 0
+  master_address: '127.0.0.1'
+  master_port: 6020
+  omp_n_threads: 4
+data:
+  path: '/bigtemp/fzv6en/datasets/cifar10.zip'
+  name: cifar10_32
+  num_channels: 3
+  resolution: 32
+  n_classes: 10
+  fid_stats: 
+  - /bigtemp/fzv6en/datasets/cifar10.npz
+  one_hot: False
+  dataloader_params:
+    num_workers: 2
+    pin_memory: True
+  dataset_params:
+    use_labels: True
+model:
+  ckpt: /bigtemp/fzv6en/kecen0923/DDPM/pretrain_cifar10_32_s_all_png/checkpoints/final_checkpoint.pth
+  denoiser_name: edm
+  denoiser_network: song
+  ema_rate: .999
+  network:
+    image_size: 32
+    num_in_channels: 3
+    num_out_channels: 3
+    attn_resolutions:
+      - 16
+optim:
+  optimizer: Adam
+  params:
+    lr: 3e-4
+    weight_decay: 0.
+sampler:
+  type: ddim
+  stochastic: False
+  num_steps: 50
+  tmin: .002
+  tmax: 80.
+  rho: 7.
+  guid_scale: 0.
+  snapshot_batch_size: 64
+  fid_batch_size: 64
+train:
+  seed: 0
+  batch_size: 19384
+  n_epochs: 50
+  log_freq: 100
+  snapshot_freq: 1000
+  snapshot_threshold: 1
+  save_freq: 100000
+  save_threshold: 1
+  fid_freq: 5000
+  fid_samples: 5000
+  fid_threshold: 1
+loss: 
+  version: edm
+  p_mean: -1.2
+  p_std: 1.2
+  n_noise_samples: 8
+  n_classes: 10
+dp:
+  max_grad_norm: 0.001
+  delta: 8e-6
+  epsilon: 0.99
+  max_physical_batch_size: 4096
+  n_splits: 64
