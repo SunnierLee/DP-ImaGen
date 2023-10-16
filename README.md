@@ -37,7 +37,6 @@ The query result will be saved as a .pth file into the folder /QueryResults
 ```
 cd ..
 cd Pre-training
-
 ```
 
 # Citation
