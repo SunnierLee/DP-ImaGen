@@ -7,3 +7,9 @@ pip install -r requirements.txt
 ```
 # Pre-trained Checkpoint
 We provide pre-trained checkpoints for all models presented in the paper here. You can sample from the checkpoint using the following command:
+# Generating synthetic images on your own sensitive data
+# Citation
+If you find the provided code or checkpoints useful for your research, please consider citing our paper:
+```
+...
+```
