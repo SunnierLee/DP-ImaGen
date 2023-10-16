@@ -9,16 +9,22 @@ pip install -r requirements.txt
 # Repoduction
 We provide an example for how to repoduce the results on CIFAR-10 in our paper.
 ## Data preparations
+Download and preprocess CIFAR-10 and ImageNet dataset.
 ```
 # download CIFAR-10 and save it as /data_dir/cifar-10-python.tar.gz
+# download ImageNet and save it as a folder /data_dir/imagenet
 cd PRIVIMAGE+D
+# preprocess CIFAR-10
 python dataset_tool.py --source /data_dir/cifar-10-python.tar.gz --dest /data_dir/cifar10.zip
 python compute_fid_statistics.py --path /data_dir/cifar10.zip --file /data_dir/cifar10.npz
+# prepocess ImageNet and save it as a folder /data_dir/imagenet32
+sh pd.sh
 ```
 ## Train semantic query function
-We train a semantic query function on the public dataset ImageNet.
+Train a semantic query function on the public dataset ImageNet.
 ```
-# download ImageNet and save it as /data_dir/ImageNet
+cd SemanticQuery
+# suppose you have 4 GPU on your device
 
 ```
 
