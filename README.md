@@ -23,6 +23,7 @@ sh pd.sh
 ## Train semantic query function
 Train a semantic query function on the public dataset ImageNet.
 ```
+cd ..
 cd SemanticQuery
 # suppose you had 4 GPUs on your device
 CUDA_VISIBLE_DEVICES=0,1,2,3 torchrun --nproc_per_node=4 --nnodes=1 train_imagenet_classifier.py
@@ -35,6 +36,9 @@ python query_semantics.py --weight_file weight_path --tar_dataset cifar10 --data
 The query result will be saved as a .pth file into the folder /QueryResults
 ## Pre-training
 ```
+cd ..
+cd Pre-training
+
 ```
 
 # Citation
