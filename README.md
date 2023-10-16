@@ -38,6 +38,9 @@ You need change data_dir parameters into yours in /src/Pre-training/configs/cifa
 cd /src/Pre-training
 CUDA_VISIBLE_DEVICES=0,1,2,3 python main.py 
 ```
+## Fine-tuning
+## Generation
+## Evaluation
 
 # Citation
 If you find the provided code or checkpoints useful for your research, please consider citing our paper:
