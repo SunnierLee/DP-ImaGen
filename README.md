@@ -26,7 +26,7 @@ Train a semantic query function on the public dataset ImageNet.
 cd /src/SemanticQuery
 CUDA_VISIBLE_DEVICES=0,1,2,3 torchrun --nproc_per_node=4 --nnodes=1 train_imagenet_classifier.py
 ```
-After training, the checkpoints will be saved with the according accuracy on the validate set. You can choose the checkpoint with the highest accuracy to query the semantics. Also you can use our trained checkpoint[url]
+After training, the checkpoints will be saved with the according accuracy on the validate set. You can choose the checkpoint with the highest accuracy to query the semantics. Also you can use our trained checkpoints.
 ```
 python query_semantics.py --weight_file weight_path --tar_dataset cifar10 --data_dir /data_dir/ --num_words 5 --sigma1 484 --tar_num_classes 10
 ```
