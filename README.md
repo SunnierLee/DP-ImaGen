@@ -53,8 +53,12 @@ cd /src/Evaluation
 python downstream_classification.py --out_dir /src/PRIVIMAGE+D/ft_dir --train_dir /src/PRIVIMAGE+D/ft_dir/sample50000/samples --test_dir data_dir --dataset cifar10
 ```
 The Classification Accuracy of trained classifiers on the testset will be saved into /src/PRIVIMAGE+D/ft_dir/evaluation_downstream_acc_log.txt
+# Contact
+If you have any problems, please feel free to contact likecen2023@ia.ac.cn.
 # Citation
 If you find the provided code or checkpoints useful for your research, please consider citing our paper:
 ```
 ...
 ```
+# Acknowledgement
+The codes for training the diffusion models with DP-SGD are based on the [DDPM](https://github.com/nv-tlabs/DPDM).
