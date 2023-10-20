@@ -61,4 +61,4 @@ If you find the provided code or checkpoints useful for your research, please co
 ...
 ```
 # Acknowledgement
-The codes for training the diffusion models with DP-SGD are based on the [DDPM](https://github.com/nv-tlabs/DPDM).
+The code for training the diffusion models with DP-SGD is based on the [DPDM](https://github.com/nv-tlabs/DPDM).
