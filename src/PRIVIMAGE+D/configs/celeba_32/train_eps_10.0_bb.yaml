@@ -1,0 +1,80 @@
+setup:
+  runner: train_dpdm_base
+  n_gpus_per_node: 2
+  n_nodes: 1
+  node_rank: 0
+  master_address: '127.0.0.1'
+  master_port: 6022
+  omp_n_threads: 4
+data:
+  path: /data_dir/celeba_32.zip
+  name: celeba_32
+  num_channels: 3
+  resolution: 32
+  n_classes: null
+  fid_stats: 
+  - /data_dir/celeba_32.npz
+  dataloader_params:
+    num_workers: 2
+    pin_memory: True
+  dataset_params:
+    use_labels: False
+model:
+  ckpt: 
+  denoiser_name: edm
+  denoiser_network: song
+  ema_rate: .999
+  network:
+    image_size: 32
+    num_in_channels: 3
+    num_out_channels: 3
+    label_dim: 0
+    use_cfg: False
+    attn_resolutions:
+    - 8
+    - 16
+    nf: 128
+optim:
+  optimizer: Adam
+  params:
+    lr: 3e-4
+    weight_decay: 0.
+sampler:
+  type: ddim
+  stochastic: False
+  num_steps: 50
+  tmin: .002
+  tmax: 80.
+  rho: 7.
+  guid_scale: 0.
+  snapshot_batch_size: 64
+  fid_batch_size: 64
+  labels: null
+train:
+  seed: 0
+  batch_size: 19384
+  n_epochs: 50
+  log_freq: 100
+  snapshot_freq: 1000
+  snapshot_threshold: 1
+  save_freq: 100000
+  save_threshold: 1
+  fid_freq: 1000
+  fid_samples: 5000
+  fid_threshold: 1
+loss: 
+  version: edm
+  p_mean: -1.2
+  p_std: 1.2
+  n_noise_samples: 8
+dp:
+  sdq: True
+  alpha_num: 100
+  alpha_min: 15000
+  alpha_max: 20000
+  sigma2: 5300
+  max_grad_norm: 0.001
+  delta: 1e-6
+  epsilon: 10.
+  max_physical_batch_size: 2048
+  n_splits: 256
