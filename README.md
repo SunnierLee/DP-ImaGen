@@ -1,7 +1,7 @@
 # PRIVIMAGE
 PRIVIMAGE is a Differetial Privacy (DP) image generation tool, which leverages the DP technique to generate synthetic data to replace the sensitive data, allowing organizations to share and utilize synthetic images without privacy concerns.
 
-<img src="./sample1.png" width = "700" alt="Synthetic images by PRIVIMAGE with epsilon=10" align=center />
+<img src="./sample1.png" width = "600" alt="Synthetic images by PRIVIMAGE with epsilon=10" align=center />
 (Synthetic images from PRIVIMAGE on CIFAR-10 and CelebA32&64 with epsilon=10.)
 
 # Requirements
