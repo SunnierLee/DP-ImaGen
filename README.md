@@ -11,7 +11,7 @@ PRIVIMAGE is built using PyTorch 2.0.1 and CUDA 11.8. Please use the following c
 conda install pytorch==2.0.1 torchvision==0.15.2 torchaudio==2.0.2 pytorch-cuda=11.8 -c pytorch -c nvidia
 pip install -r requirements.txt 
 ```
-# Repoduction
+# Reproduction
 We provide an example for how to repoduce the results on CIFAR-10 in our paper. Suppose you had 4 GPUs on your device.
 ## Data preparations
 Download and preprocess CIFAR-10 and ImageNet dataset.
