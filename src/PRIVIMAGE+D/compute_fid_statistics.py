@@ -40,7 +40,7 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('--path', type=str, required=True)
     parser.add_argument('--batch_size', type=int, default=128)
-    parser.add_argument('--fid_dir', type=str, default='assets/stats/')
+    parser.add_argument('--fid_dir', type=str, default='')
     parser.add_argument('--file', type=str, required=True)
     parser.add_argument('--max_samples', type=int, default=None)
     args = parser.parse_args()
