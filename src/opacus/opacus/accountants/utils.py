@@ -75,9 +75,9 @@ def get_noise_multiplier(
     while target_epsilon - eps_high > epsilon_tolerance:
         sigma = (sigma_low + sigma_high) / 2
         if account_history is None:
-            accountant.history = [(sigma_high, sample_rate, steps)]
+            accountant.history = [(sigma, sample_rate, steps)]
         else:
-            accountant.history = [account_history, (sigma_high, sample_rate, steps)]
+            accountant.history = [account_history, (sigma, sample_rate, steps)]
         eps = accountant.get_epsilon(delta=target_delta, **kwargs)
 
         if eps < target_epsilon:
