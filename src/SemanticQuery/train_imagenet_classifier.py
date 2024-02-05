@@ -16,6 +16,7 @@ from torch.nn.parallel import DistributedDataParallel as DDP
 from torch.utils.data.distributed import DistributedSampler
 
 from SpecificImagenet import SpecificClassImagenet
+from classifier_models import resnet
 
 
 criterion = nn.CrossEntropyLoss()
@@ -64,7 +65,7 @@ class MyClassifier(nn.Module):
     def __init__(self, model="resnet", num_classes=1000):
         super(MyClassifier, self).__init__()
         if model == "resnet50":
-            self.model = models.resnet50(weights=models.ResNet50_Weights.DEFAULT)
+            self.model = resnet.ResNet50(num_classes=num_classes)
         else:
             raise NotImplementedError
 
