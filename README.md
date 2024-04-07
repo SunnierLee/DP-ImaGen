@@ -34,7 +34,9 @@ We provide an example for how to reproduce the results on CIFAR-10 in our paper.
 
 ### 3.1 Installation
 
-To setup the environment of PRIVIMAGE, we use `conda` to manage our dependencies. Our developers use `CUDA 11.8` to do experiments. Run the following commands to install PRIVIMAGE:
+To setup the environment of PRIVIMAGE, we use `conda` to manage our dependencies. Our developers are conducted using `CUDA 11.8`. 
+
+Run the following commands to install PRIVIMAGE:
  ```
 conda create -n privimage python=3.8 -y && conda activate privimage
 pip install --upgrade pip
@@ -75,7 +77,7 @@ sh pd.sh
 ```
 
 ### 3.3 Training
-First, Train a semantic query function on the public dataset ImageNet.
+First, train a semantic query function on the public dataset ImageNet.
 ```
 cd /src/SemanticQuery
 CUDA_VISIBLE_DEVICES=0,1,2,3 torchrun --nproc_per_node=4 --nnodes=1 train_imagenet_classifier.py
@@ -84,33 +86,40 @@ After training, the checkpoints will be saved with the according accuracy on the
 ```
 python query_semantics.py --weight_file weight_path --tar_dataset cifar10 --data_dir /src/data/CIFAR-10 --num_words 5 --sigma1 484 --tar_num_classes 10
 ```
-The query result will be saved as a .pth file into the folder `/QueryResults`.
-Second, pretrain the diffusion model with the query result. You need change data_dir parameters into yours in `/src/Pre-training/configs/cifar10_32/pretrain_s.yaml`.
+The query result will be saved as a `.pth` file into the folder `/QueryResults`.
+
+Second, pretrain the diffusion model with the query result. Please change data_dir parameters into yours in `/src/Pre-training/configs/cifar10_32/pretrain_s.yaml`.
 ```
 cd /src/Pre-training
 CUDA_VISIBLE_DEVICES=0,1,2,3 python main.py --mode train --worker_dir pt_dir
 ```
+
 After training, the checkpoint will be saved as `/src/Pre-training/pt_dir/checkpoints/final_checkpoint.pth`.
-Third, finetune the pretrained model on the sensitive dataset. You need change data_dir and ckpt parameters into yours in `/src/PRIVIMAGE+D/configs/cifar10_32/train_eps_10.0_s.yaml`.
+Third, please finetune the pretrained model on the sensitive dataset. Readers should change data_dir and ckpt parameters into yours in `/src/PRIVIMAGE+D/configs/cifar10_32/train_eps_10.0_s.yaml`.
+
 ```
 cd /src/PRIVIMAGE+D
 CUDA_VISIBLE_DEVICES=0,1,2,3 python main.py --mode train --worker_dir ft_dir
 ```
+
 The FID of synthetic images will be saved in `/src/PRIVIMAGE/ft_dir/stdout.txt`.
+
 ### 3.4 Evaluation
+
 Use trained PRIVIMAGE to generate 50,000 images for training classifiers.
+
 ```
 CUDA_VISIBLE_DEVICES=0,1,2,3 python main.py --mode eval --worker_dir ft_dir/sample50000 -- model.ckpt=/src/PRIVIMAGE+D/ft_dir/checkpoints/final_checkpoint.pth
 cd /src/Evaluation
 python downstream_classification.py --out_dir /src/PRIVIMAGE+D/ft_dir --train_dir /src/PRIVIMAGE+D/ft_dir/sample50000/samples --test_dir data_dir --dataset cifar10
 ```
-The Classification Accuracy of trained classifiers on the testset will be saved into `/src/PRIVIMAGE+D/ft_dir/evaluation_downstream_acc_log.txt`.
+The Classification Accuracy (CA) of trained classifiers on the testset will be saved into `/src/PRIVIMAGE+D/ft_dir/evaluation_downstream_acc_log.txt`.
 
 ## 4. Contacts
 If you have any problems, please feel free to contact Kecen Li (likecen2023@ia.ac.cn) and Chen Gong (ChenG_abc@outlook.com).
 
 ## 5. Acknowledgement
-The code for training the diffusion models with DP-SGD is based on the [DPDM](https://github.com/nv-tlabs/DPDM).
+The codes for training the diffusion models with DP-SGD is based on the [DPDM](https://github.com/nv-tlabs/DPDM).
 
 ## 6. Citation
 
