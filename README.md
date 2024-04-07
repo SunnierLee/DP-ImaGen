@@ -30,10 +30,10 @@ This is the official implementaion of paper [***PRIVIMAGE: Differentially Privat
 Differential Privacy (DP) image data synthesis, which leverages the DP technique to generate synthetic data to replace the sensitive data, allowing organizations to share and utilize synthetic images without privacy concerns. Previous methods incorporate the advanced techniques of generative models and pre-training on a public dataset to produce exceptional DP image data, but suffer from problems of unstable training and massive computational resource demands. This paper proposes a novel DP image synthesis method, termed PRIVIMAGE, which meticulously selects pre-training data, promoting the efficient creation of DP datasets with high fidelity and utility. PRIVIMAGE first establishes a semantic query function using a public dataset. Then, this function assists in querying
 the semantic distribution of the sensitive dataset, facilitating the selection of data from the public dataset with analogous semantics for pre-training. Finally, we pre-train an image generative model using the selected data and then fine-tune this model on the sensitive dataset using Differentially Private Stochastic Gradient Descent (DP-SGD). PRIVIMAGE allows us to train a lightly parameterized generative model, reducing the noise in the gradient during DP-SGD training and enhancing training stability. Extensive experiments demonstrate that PRIVIMAGE uses only 1% of the public dataset for pre-training and 7.6% of the parameters in the generative model compared to the state-of-the-art method, whereas achieves superior synthetic performance and conserves more computational resources. On average, PRIVIMAGE achieves 6.8% lower FID and 13.2% higher Classification Accuracy than the state-of-the-art method.
 
-## 4. Get Start
+## 3. Get Start
 We provide an example for how to reproduce the results on CIFAR-10 in our paper. Suppose you had 4 GPUs on your device.
 
-### 4.1 Installation
+### 3.1 Installation
 
 To setup the environment of PRIVIMAGE, we use `conda` to manage our dependencies. Our developers use `CUDA 11.8` to do experiments. Run the following commands to install PRIVIMAGE:
  ```
@@ -43,7 +43,7 @@ pip install pytorch==2.0.1 torchvision==0.15.2 torchaudio==2.0.2 pytorch-cuda=11
 pip install -r requirements.txt 
  ```
 
-### 4.2 Dataset and Files Preparation
+### 3.2 Dataset and Files Preparation
 Download the files in the table and arrange the files according to the file tree below.
   | Dataset & Files                        | Download                                                               | Usage                                                                 |
   | -------------------------------------- | ---------------------------------------------------------------------- | --------------------------------------------------------------------- |
@@ -75,15 +75,15 @@ python compute_fid_statistics.py --path /src/data/CIFAR-10/cifar10.zip --file /s
 sh pd.sh
 ```
 
-## Query semantic distribution
+### 3.3 Training
 Train a semantic query function on the public dataset ImageNet.
 ```
 cd /src/SemanticQuery
 CUDA_VISIBLE_DEVICES=0,1,2,3 torchrun --nproc_per_node=4 --nnodes=1 train_imagenet_classifier.py
 ```
-After training, the checkpoints will be saved with the according accuracy on the validate set. You can choose the checkpoint with the highest accuracy to query the semantics. Also you can use our trained checkpoints.
+After training, the checkpoints will be saved with the according accuracy on the validate set. You can choose the checkpoint with the highest accuracy to query the semantics.
 ```
-python query_semantics.py --weight_file weight_path --tar_dataset cifar10 --data_dir /data_dir/ --num_words 5 --sigma1 484 --tar_num_classes 10
+python query_semantics.py --weight_file weight_path --tar_dataset cifar10 --data_dir /src/data/CIFAR-10 --num_words 5 --sigma1 484 --tar_num_classes 10
 ```
 The query result will be saved as a .pth file into the folder /QueryResults
 ## Pre-training
@@ -109,8 +109,20 @@ python downstream_classification.py --out_dir /src/PRIVIMAGE+D/ft_dir --train_di
 ```
 The Classification Accuracy of trained classifiers on the testset will be saved into /src/PRIVIMAGE+D/ft_dir/evaluation_downstream_acc_log.txt
 
-## Contact
+## 4. Contact
 If you have any problems, please feel free to contact Kecen Li (likecen2023@ia.ac.cn) and Chen Gong (ChenG_abc@outlook.com).
 
-# Acknowledgement
+## 5. Acknowledgement
 The code for training the diffusion models with DP-SGD is based on the [DPDM](https://github.com/nv-tlabs/DPDM).
+
+## 6. Citation
+
+```text
+@article{li2023privimage,
+  title={PRIVIMAGE: Differentially Private Synthetic Image Generation using Diffusion
+Models with Semantic-Aware Pretraining},
+  author={Kecen Li and Chen Gong and Zhixiang Li and Yuzhong Zhao and Xinwen Hou and Tianhao Wang},
+  journal={arXiv preprint arXiv:2307.09756},
+  year={2023}
+}
+```
