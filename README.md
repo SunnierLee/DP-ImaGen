@@ -119,8 +119,7 @@ The code for training the diffusion models with DP-SGD is based on the [DPDM](ht
 
 ```text
 @article{li2023privimage,
-  title={PRIVIMAGE: Differentially Private Synthetic Image Generation using Diffusion
-Models with Semantic-Aware Pretraining},
+  title={PRIVIMAGE: Differentially Private Synthetic Image Generation using Diffusion Models with Semantic-Aware Pretraining},
   author={Kecen Li and Chen Gong and Zhixiang Li and Yuzhong Zhao and Xinwen Hou and Tianhao Wang},
   journal={arXiv preprint arXiv:2307.09756},
   year={2023}
