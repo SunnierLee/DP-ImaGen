@@ -31,6 +31,7 @@ Differential Privacy (DP) image data synthesis, which leverages the DP technique
 the semantic distribution of the sensitive dataset, facilitating the selection of data from the public dataset with analogous semantics for pre-training. Finally, we pre-train an image generative model using the selected data and then fine-tune this model on the sensitive dataset using Differentially Private Stochastic Gradient Descent (DP-SGD). PRIVIMAGE allows us to train a lightly parameterized generative model, reducing the noise in the gradient during DP-SGD training and enhancing training stability. Extensive experiments demonstrate that PRIVIMAGE uses only 1% of the public dataset for pre-training and 7.6% of the parameters in the generative model compared to the state-of-the-art method, whereas achieves superior synthetic performance and conserves more computational resources. On average, PRIVIMAGE achieves 6.8% lower FID and 13.2% higher Classification Accuracy than the state-of-the-art method.
 
 ## 4. Get Start
+We provide an example for how to reproduce the results on CIFAR-10 in our paper. Suppose you had 4 GPUs on your device.
 
 ### 4.1 Installation
 
@@ -48,41 +49,19 @@ pip install -r requirements.txt
   | -------------------------------------- | ---------------------------------------------------------------------- | --------------------------------------------------------------------- |
   | data/ImageNet_ILSVRC2012             | [Official Link](http://image-net.org/)                        | Pretraining dataset                                                     |
   | data/CIFAR-10                   | [Official Link](https://www.cs.toronto.edu/~kriz/cifar.html)      | Sensitive dataset                                        |
-  | data/CelebA                  | [Official Link](https://mmlab.ie.cuhk.edu.hk/projects/CelebA.html)      | Sensitive dataset                                        |
 
 ```text
-    |--DP-ImaGen/
+    |--src/
       |--data/
         |--ImageNet_ILSVRC2012/
            |--ILSVRC2012_list/
            |--train/
            |--val/
-        |--CUB_200_2011
+        |--CIFAR-10
            |--attributes/
            |--images/
            ...
-      |--ckpts/
-        |--pretrains/
-          |--stable-diffusion-v1-4/
-        |--classifications/
-          |--cub_efficientnetb7.json
-          |--imagenet_efficientnet-b7_3rdparty_8xb32-aa-advprop_in1k.json
-        |--imagenet750/
-          |--tokens/
-             |--49408.bin
-             |--49409.bin
-             ...
-          |--unet/
-        |--cub983/
-          |--tokens/
-             |--49408.bin
-             |--49409.bin
-             ...
-          |--unet/
-      |--configs/
-      |--datasets
-      |--models
-      |--main.py
+        ...
 ```
 
 # Reproduction
