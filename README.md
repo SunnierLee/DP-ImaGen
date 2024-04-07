@@ -1,5 +1,9 @@
-# <p align="center">PrivImage: Differentially Private Synthetic Image Generation using Diffusion Models with Semantic-Aware Pretraining</p>
-This is the official implementaion of paper [PrivImage: Differentially Private Synthetic Image Generation using Diffusion Models with Semantic-Aware Pretraining](https://arxiv.org/abs/2311.12850), which is accepted in USENIX Security 2024. This repository contains Pytorch training code, evaluation code, pre-trained models, and visualization method.
+<div align=center>
+  
+# PrivImage: Differentially Private Synthetic Image Generation using Diffusion Models with Semantic-Aware Pretraining
+</div>
+
+This is the official implementaion of paper [***PrivImage: Differentially Private Synthetic Image Generation using Diffusion Models with Semantic-Aware Pretraining***](https://arxiv.org/abs/2311.12850), which is accepted in ***USENIX Security 2024***. This repository contains Pytorch training code and evaluation code.
 PRIVIMAGE is a Differetial Privacy (DP) image generation tool, which leverages the DP technique to generate synthetic data to replace the sensitive data, allowing organizations to share and utilize synthetic images without privacy concerns.
 
 <div align=center>
@@ -7,6 +11,37 @@ PRIVIMAGE is a Differetial Privacy (DP) image generation tool, which leverages t
 </div>
 
 <p align="center">Synthetic images from PrivImage on CIFAR-10 and CelebA32&64 with $\epsilon=10$.</p>
+
+## 1. Contents
+- PrivImage: Differentially Private Synthetic Image Generation using Diffusion Models with Semantic-Aware Pretraining
+  - [1. Contents](#1-contents)
+  - [2. Introduction](#2-introduction)
+  - [3. Get Start](#3-get-start)
+    - [3.1 Installation](#31-installation)
+    - [3.2 Dataset and Files Preparation](#32-dataset-and-files-preparation)
+    - [3.3 Training](#33-training)
+    - [3.4 Inference](#34-inference)
+    - [3.5 Extra Options](#35-extra-options)
+  - [4. Contacts](#4-contacts)
+  - [5. Acknowledgment](#5-acknowledgment)
+  - [6. Citation](#6-citation)
+
+## 2. Introduction
+
+Differential Privacy (DP) image data synthesis, which leverages the DP technique to generate synthetic data to replace the sensitive data, allowing organizations to share and utilize synthetic images without privacy concerns. Previous methods incorporate the advanced techniques of generative models and pre-training on a public dataset to produce exceptional DP image data, but suffer from problems of unstable training and massive computational resource demands. This paper proposes a novel DP image synthesis method, termed PRIVIMAGE, which meticulously selects pre-training data, promoting the efficient creation of DP datasets with high fidelity and utility. PRIVIMAGE first establishes a semantic query function using a public dataset. Then, this function assists in querying
+the semantic distribution of the sensitive dataset, facilitating the selection of data from the public dataset with analogous semantics for pre-training. Finally, we pre-train an image generative model using the selected data and then fine-tune this model on the sensitive dataset using Differentially Private Stochastic Gradient Descent (DP-SGD). PRIVIMAGE allows us to train a lightly parameterized generative model, reducing the noise in the gradient during DP-SGD training and enhancing training stability. Extensive experiments demonstrate that PRIVIMAGE uses only 1% of the public dataset for pre-training and 7.6% of the parameters in the generative model compared to the state-of-the-art method, whereas achieves superior synthetic performance and conserves more computational resources. On average, PRIVIMAGE achieves 6.8% lower FID and 13.2% higher Classification Accuracy than the state-of-the-art method.
+
+## 4. Get Start
+
+### 4.1 Installation
+
+To setup the environment of PRIVIMAGE, we use `conda` to manage our dependencies. Our developers use `CUDA 11.8` to do experiments. Run the following commands to install PRIVIMAGE:
+ ```
+conda create -n privimage python=3.8 -y && conda activate privimage
+pip install --upgrade pip
+pip install pytorch==2.0.1 torchvision==0.15.2 torchaudio==2.0.2 pytorch-cuda=11.8 -c pytorch -c nvidia
+pip install -r requirements.txt 
+ ```
 
 # Requirements
 PRIVIMAGE is built using PyTorch 2.0.1 and CUDA 11.8. Please use the following command to install the requirements:
