@@ -20,7 +20,6 @@ This is the official implementaion of paper [***PRIVIMAGE: Differentially Privat
     - [3.2 Dataset and Files Preparation](#32-dataset-and-files-preparation)
     - [3.3 Training](#33-training)
     - [3.4 Inference](#34-inference)
-    - [3.5 Extra Options](#35-extra-options)
   - [4. Contacts](#4-contacts)
   - [5. Acknowledgment](#5-acknowledgment)
   - [6. Citation](#6-citation)
@@ -76,7 +75,7 @@ sh pd.sh
 ```
 
 ### 3.3 Training
-Train a semantic query function on the public dataset ImageNet.
+First, Train a semantic query function on the public dataset ImageNet.
 ```
 cd /src/SemanticQuery
 CUDA_VISIBLE_DEVICES=0,1,2,3 torchrun --nproc_per_node=4 --nnodes=1 train_imagenet_classifier.py
@@ -86,21 +85,19 @@ After training, the checkpoints will be saved with the according accuracy on the
 python query_semantics.py --weight_file weight_path --tar_dataset cifar10 --data_dir /src/data/CIFAR-10 --num_words 5 --sigma1 484 --tar_num_classes 10
 ```
 The query result will be saved as a .pth file into the folder /QueryResults
-## Pre-training
-You need change data_dir parameters into yours in /src/Pre-training/configs/cifar10_32/pretrain_s.yaml
+Second, pretrain the diffusion model with the query result. You need change data_dir parameters into yours in /src/Pre-training/configs/cifar10_32/pretrain_s.yaml
 ```
 cd /src/Pre-training
 CUDA_VISIBLE_DEVICES=0,1,2,3 python main.py --mode train --worker_dir pt_dir
 ```
 After training, the checkpoint will be saved as /src/Pre-training/pt_dir/checkpoints/final_checkpoint.pth
-## Fine-tuning
-You need change data_dir and ckpt parameters into yours in /src/PRIVIMAGE+D/configs/cifar10_32/train_eps_10.0_s.yaml
+Third, finetune the pretrained model on the sensitive dataset. You need change data_dir and ckpt parameters into yours in /src/PRIVIMAGE+D/configs/cifar10_32/train_eps_10.0_s.yaml
 ```
 cd /src/PRIVIMAGE+D
 CUDA_VISIBLE_DEVICES=0,1,2,3 python main.py --mode train --worker_dir ft_dir
 ```
 The FID of synthetic images will be saved in /src/PRIVIMAGE/ft_dir/stdout.txt
-## Evaluation
+### 3.4 Evaluation
 Use trained PRIVIMAGE to generate 50,000 images for training classifiers.
 ```
 CUDA_VISIBLE_DEVICES=0,1,2,3 python main.py --mode eval --worker_dir ft_dir/sample50000 -- model.ckpt=/src/PRIVIMAGE+D/ft_dir/checkpoints/final_checkpoint.pth
