@@ -64,15 +64,14 @@ Download the files in the table and arrange the files according to the file tree
              ...
         |--CIFAR-10
            |--cifar-10-python.tar.gz
-        ...
 ```
 Preprocess dataset for faster training.
 ```
 cd /src/PRIVIMAGE+D
 # preprocess CIFAR-10
-python dataset_tool.py --source /data_dir/cifar-10-python.tar.gz --dest /data_dir/cifar10.zip
-python compute_fid_statistics.py --path /data_dir/cifar10.zip --file /data_dir/cifar10.npz
-# prepocess ImageNet and save it as a folder /data_dir/imagenet32
+python dataset_tool.py --source /src/data/CIFAR-10/cifar-10-python.tar.gz --dest /src/data/CIFAR-10/cifar10.zip
+python compute_fid_statistics.py --path /src/data/CIFAR-10/cifar10.zip --file /src/data/CIFAR-10/cifar10.npz
+# preprocess ImageNet and save it as a folder /src/data/ImageNet32_ILSVRC2012
 sh pd.sh
 ```
 
