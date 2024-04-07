@@ -42,12 +42,43 @@ pip install pytorch==2.0.1 torchvision==0.15.2 torchaudio==2.0.2 pytorch-cuda=11
 pip install -r requirements.txt 
  ```
 
-# Requirements
-PRIVIMAGE is built using PyTorch 2.0.1 and CUDA 11.8. Please use the following command to install the requirements:
+### 4.2 Dataset and Files Preparation
+
+```text
+    |--DP-ImaGen/
+      |--data/
+        |--ImageNet_ILSVRC2012/
+           |--ILSVRC2012_list/
+           |--train/
+           |--val/
+        |--CUB_200_2011
+           |--attributes/
+           |--images/
+           ...
+      |--ckpts/
+        |--pretrains/
+          |--stable-diffusion-v1-4/
+        |--classifications/
+          |--cub_efficientnetb7.json
+          |--imagenet_efficientnet-b7_3rdparty_8xb32-aa-advprop_in1k.json
+        |--imagenet750/
+          |--tokens/
+             |--49408.bin
+             |--49409.bin
+             ...
+          |--unet/
+        |--cub983/
+          |--tokens/
+             |--49408.bin
+             |--49409.bin
+             ...
+          |--unet/
+      |--configs/
+      |--datasets
+      |--models
+      |--main.py
 ```
-conda install pytorch==2.0.1 torchvision==0.15.2 torchaudio==2.0.2 pytorch-cuda=11.8 -c pytorch -c nvidia
-pip install -r requirements.txt 
-```
+
 # Reproduction
 We provide an example for how to reproduce the results on CIFAR-10 in our paper. Suppose you had 4 GPUs on your device.
 ## Data preparations
