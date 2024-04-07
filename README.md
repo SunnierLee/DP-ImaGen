@@ -44,11 +44,11 @@ pip install -r requirements.txt
  ```
 
 ### 4.2 Dataset and Files Preparation
-
+Download the files in the table and arrange the files according to the file tree below.
   | Dataset & Files                        | Download                                                               | Usage                                                                 |
   | -------------------------------------- | ---------------------------------------------------------------------- | --------------------------------------------------------------------- |
   | data/ImageNet_ILSVRC2012             | [Official Link](http://image-net.org/)                        | Pretraining dataset                                                     |
-  | data/CIFAR-10                   | [Official Link](https://www.cs.toronto.edu/~kriz/cifar.html)      | Sensitive dataset                                        |
+  | data/CIFAR-10                   | [Google Drive](https://drive.google.com/file/d/1pSwaN0Tn7Y2D6EOpkj3A1N8LEYR277Aw/view?usp=drive_link)      | Sensitive dataset                                        |
 
 ```text
     |--src/
@@ -63,11 +63,7 @@ pip install -r requirements.txt
            ...
         ...
 ```
-
-# Reproduction
-We provide an example for how to reproduce the results on CIFAR-10 in our paper. Suppose you had 4 GPUs on your device.
-## Data preparations
-Download and preprocess CIFAR-10 and ImageNet dataset.
+Preprocess dataset for faster training.
 ```
 # download CIFAR-10 and save it as /data_dir/cifar-10-python.tar.gz
 # download ImageNet and save it as a folder /data_dir/imagenet
@@ -78,6 +74,7 @@ python compute_fid_statistics.py --path /data_dir/cifar10.zip --file /data_dir/c
 # prepocess ImageNet and save it as a folder /data_dir/imagenet32
 sh pd.sh
 ```
+
 ## Query semantic distribution
 Train a semantic query function on the public dataset ImageNet.
 ```
