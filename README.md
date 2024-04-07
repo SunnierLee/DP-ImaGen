@@ -44,6 +44,12 @@ pip install -r requirements.txt
 
 ### 4.2 Dataset and Files Preparation
 
+  | Dataset & Files                        | Download                                                               | Usage                                                                 |
+  | -------------------------------------- | ---------------------------------------------------------------------- | --------------------------------------------------------------------- |
+  | data/ImageNet_ILSVRC2012             | [Official Link](http://image-net.org/)                        | Pretraining dataset                                                     |
+  | data/CIFAR-10                   | [Official Link]([http://www.vision.caltech.edu/datasets/cub_200_2011/](https://www.cs.toronto.edu/~kriz/cifar.html))      | Sensitive dataset                                        |
+  | data/CelebA                  | [Official Link]([http://www.vision.caltech.edu/datasets/cub_200_2011/](https://mmlab.ie.cuhk.edu.hk/projects/CelebA.html))      | Sensitive dataset                                        |
+
 ```text
     |--DP-ImaGen/
       |--data/
