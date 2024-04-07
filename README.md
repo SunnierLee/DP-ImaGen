@@ -54,19 +54,20 @@ Download the files in the table and arrange the files according to the file tree
     |--src/
       |--data/
         |--ImageNet_ILSVRC2012/
-           |--ILSVRC2012_list/
            |--train/
+             |--n01440764/
+             |--n01443537/
+             ...
            |--val/
+             |--n01440764/
+             |--n01443537/
+             ...
         |--CIFAR-10
-           |--attributes/
-           |--images/
-           ...
+           |--cifar-10-python.tar.gz
         ...
 ```
 Preprocess dataset for faster training.
 ```
-# download CIFAR-10 and save it as /data_dir/cifar-10-python.tar.gz
-# download ImageNet and save it as a folder /data_dir/imagenet
 cd /src/PRIVIMAGE+D
 # preprocess CIFAR-10
 python dataset_tool.py --source /data_dir/cifar-10-python.tar.gz --dest /data_dir/cifar10.zip
