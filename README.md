@@ -106,7 +106,7 @@ python downstream_classification.py --out_dir /src/PRIVIMAGE+D/ft_dir --train_di
 ```
 The Classification Accuracy of trained classifiers on the testset will be saved into /src/PRIVIMAGE+D/ft_dir/evaluation_downstream_acc_log.txt
 
-## 4. Contact
+## 4. Contacts
 If you have any problems, please feel free to contact Kecen Li (likecen2023@ia.ac.cn) and Chen Gong (ChenG_abc@outlook.com).
 
 ## 5. Acknowledgement
