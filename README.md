@@ -1,18 +1,18 @@
 <div align=center>
   
-# PRIVIMAGE: Differentially Private Synthetic Image Generation using Diffusion Models with Semantic-Aware Pretraining
+# PrivImage: Differentially Private Synthetic Image Generation using Diffusion Models with Semantic-Aware Pretraining
 </div>
 
-This is the official implementaion of paper [***PRIVIMAGE: Differentially Private Synthetic Image Generation using Diffusion Models with Semantic-Aware Pretraining***](https://arxiv.org/abs/2311.12850), which is accepted in ***USENIX Security 2024***. This repository contains Pytorch training code and evaluation code. PRIVIMAGE is a Differetial Privacy (DP) image generation tool, which leverages the DP technique to generate synthetic data to replace the sensitive data, allowing organizations to share and utilize synthetic images without privacy concerns.
+This is the official implementaion of paper [***PrivImage: Differentially Private Synthetic Image Generation using Diffusion Models with Semantic-Aware Pretraining***](https://arxiv.org/abs/2311.12850), which is accepted in ***USENIX Security 2024***. This repository contains Pytorch training code and evaluation code. PrivImage is a Differetial Privacy (DP) image generation tool, which leverages the DP technique to generate synthetic data to replace the sensitive data, allowing organizations to share and utilize synthetic images without privacy concerns.
 
 <div align=center>
 <img src="./sample1.png" width = "600" alt="Synthetic images by PRIVIMAGE with epsilon=10" align=center />
 </div>
 
-<p align="center">Synthetic images from PRIVIMAGE on CIFAR-10 and CelebA32&64 with $\epsilon=10$.</p>
+<p align="center">Synthetic images from PrivImage on CIFAR-10 and CelebA32&64 with $\epsilon=10$.</p>
 
 ## 1. Contents
-- PRIVIMAGE: Differentially Private Synthetic Image Generation using Diffusion Models with Semantic-Aware Pretraining
+- PrivImage: Differentially Private Synthetic Image Generation using Diffusion Models with Semantic-Aware Pretraining
   - [1. Contents](#1-contents)
   - [2. Introduction](#2-introduction)
   - [3. Get Start](#3-get-start)
@@ -26,8 +26,8 @@ This is the official implementaion of paper [***PRIVIMAGE: Differentially Privat
 
 ## 2. Introduction
 
-Differential Privacy (DP) image data synthesis, which leverages the DP technique to generate synthetic data to replace the sensitive data, allowing organizations to share and utilize synthetic images without privacy concerns. Previous methods incorporate the advanced techniques of generative models and pre-training on a public dataset to produce exceptional DP image data, but suffer from problems of unstable training and massive computational resource demands. This paper proposes a novel DP image synthesis method, termed PRIVIMAGE, which meticulously selects pre-training data, promoting the efficient creation of DP datasets with high fidelity and utility. PRIVIMAGE first establishes a semantic query function using a public dataset. Then, this function assists in querying
-the semantic distribution of the sensitive dataset, facilitating the selection of data from the public dataset with analogous semantics for pre-training. Finally, we pre-train an image generative model using the selected data and then fine-tune this model on the sensitive dataset using Differentially Private Stochastic Gradient Descent (DP-SGD). PRIVIMAGE allows us to train a lightly parameterized generative model, reducing the noise in the gradient during DP-SGD training and enhancing training stability. Extensive experiments demonstrate that PRIVIMAGE uses only 1% of the public dataset for pre-training and 7.6% of the parameters in the generative model compared to the state-of-the-art method, whereas achieves superior synthetic performance and conserves more computational resources. On average, PRIVIMAGE achieves 6.8% lower FID and 13.2% higher Classification Accuracy than the state-of-the-art method.
+Differential Privacy (DP) image data synthesis, which leverages the DP technique to generate synthetic data to replace the sensitive data, allowing organizations to share and utilize synthetic images without privacy concerns. Previous methods incorporate the advanced techniques of generative models and pre-training on a public dataset to produce exceptional DP image data, but suffer from problems of unstable training and massive computational resource demands. This paper proposes a novel DP image synthesis method, termed PrivImage, which meticulously selects pre-training data, promoting the efficient creation of DP datasets with high fidelity and utility. PrivImage first establishes a semantic query function using a public dataset. Then, this function assists in querying
+the semantic distribution of the sensitive dataset, facilitating the selection of data from the public dataset with analogous semantics for pre-training. Finally, we pre-train an image generative model using the selected data and then fine-tune this model on the sensitive dataset using Differentially Private Stochastic Gradient Descent (DP-SGD). PrivImage allows us to train a lightly parameterized generative model, reducing the noise in the gradient during DP-SGD training and enhancing training stability. Extensive experiments demonstrate that PRIVIMAGE uses only 1% of the public dataset for pre-training and 7.6% of the parameters in the generative model compared to the state-of-the-art method, whereas achieves superior synthetic performance and conserves more computational resources. On average, PrivImage achieves 6.8% lower FID and 13.2% higher Classification Accuracy than the state-of-the-art method.
 
 ## 3. Get Start
 We provide an example for how to reproduce the results on CIFAR-10 in our paper. Suppose you had 4 GPUs on your device.
@@ -36,7 +36,7 @@ We provide an example for how to reproduce the results on CIFAR-10 in our paper.
 
 To setup the environment of PRIVIMAGE, we use `conda` to manage our dependencies. Our developers are conducted using `CUDA 11.8`. 
 
-Run the following commands to install PRIVIMAGE:
+Run the following commands to install PrivImage:
  ```
 conda create -n privimage python=3.8 -y && conda activate privimage
 pip install --upgrade pip
@@ -106,7 +106,7 @@ The FID of synthetic images will be saved in `/src/PRIVIMAGE/ft_dir/stdout.txt`.
 
 ### 3.4 Evaluation
 
-Use trained PRIVIMAGE to generate 50,000 images for training classifiers.
+Use trained PrivImage to generate 50,000 images for training classifiers.
 
 ```
 CUDA_VISIBLE_DEVICES=0,1,2,3 python main.py --mode eval --worker_dir ft_dir/sample50000 -- model.ckpt=/src/PRIVIMAGE+D/ft_dir/checkpoints/final_checkpoint.pth
@@ -125,7 +125,7 @@ The codes for training the diffusion models with DP-SGD is based on the [DPDM](h
 
 ```text
 @article{li2023privimage,
-  title={PRIVIMAGE: Differentially Private Synthetic Image Generation using Diffusion Models with Semantic-Aware Pretraining},
+  title={PrivImage: Differentially Private Synthetic Image Generation using Diffusion Models with Semantic-Aware Pretraining},
   author={Kecen Li and Chen Gong and Zhixiang Li and Yuzhong Zhao and Xinwen Hou and Tianhao Wang},
   journal={arXiv preprint arXiv:2307.09756},
   year={2023}
