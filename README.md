@@ -13,7 +13,7 @@ This is the official implementaion of paper [***PrivImage: Differentially Privat
 
 ## Update:
 
-- 10/07/2024: We reached out to the author of DPSDA and have added an explanation for why the FID scores in the DPSDA table are lower than those reported in the original paper. Please refer to [Paper](https://arxiv.org/abs/2311.12850).
+- 10/07/2024: We communicated with the author of DPSDA and have added an explanation for why the FID scores in the DPSDA table are lower than those reported in the original paper. Please refer to [Paper](https://arxiv.org/abs/2311.12850).
 
 ## 1. Contents
 - PrivImage: Differentially Private Synthetic Image Generation using Diffusion Models with Semantic-Aware Pretraining
