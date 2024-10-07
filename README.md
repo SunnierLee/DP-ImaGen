@@ -11,6 +11,10 @@ This is the official implementaion of paper [***PrivImage: Differentially Privat
 
 <p align="center">Synthetic images from PrivImage on CIFAR-10 and CelebA32&64 with $\epsilon=10$.</p>
 
+## Update:
+
+- 07/10/2124: We reached out to the author of DPSDA and have added an explanation for why the FID scores in the DPSDA table are lower than those reported in the original paper. Please refer to [Paper](https://arxiv.org/abs/2311.12850).
+
 ## 1. Contents
 - PrivImage: Differentially Private Synthetic Image Generation using Diffusion Models with Semantic-Aware Pretraining
   - [1. Contents](#1-contents)
