@@ -75,7 +75,7 @@ Preprocess dataset for faster training.
 cd /src/PRIVIMAGE+D
 # preprocess CIFAR-10
 python dataset_tool.py --source /src/data/CIFAR-10/cifar-10-python.tar.gz --dest /src/data/CIFAR-10/cifar10.zip
-python compute_fid_statistics.py --path /src/data/CIFAR-10/cifar10.zip --file /src/data/CIFAR-10/cifar10.npz
+python compute_fid_statistics.py --path /src/data/CIFAR-10/cifar10.zip --fid_dir /src/data/CIFAR-10/ --file cifar10.npz
 # preprocess ImageNet and save it as a folder /src/data/ImageNet32_ILSVRC2012
 sh pd.sh
 ```
