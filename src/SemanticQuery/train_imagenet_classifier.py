@@ -121,12 +121,14 @@ def main(args):
                 #transforms.Resize(size=(config.data.resolution, config.data.resolution)),
                 transforms.RandomHorizontalFlip(p=0.5),
                 transforms.ToTensor(),
+                transforms.Normalize([0.5] * 3, [0.5] * 3)
             ]))
     val_dataset = SpecificClassImagenet(root=data_dir, split="val", specific_class=None, transform=transforms.Compose([
                 #CenterCropLongEdge(),
                 #transforms.Resize(size=(config.data.resolution, config.data.resolution)),
                 transforms.RandomHorizontalFlip(p=0.5),
                 transforms.ToTensor(),
+                transforms.Normalize([0.5] * 3, [0.5] * 3)
             ]))
 
     if rank == 0:
