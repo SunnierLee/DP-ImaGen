@@ -566,6 +566,14 @@ class NIN(nn.Module):
         y = contract_inner(x, self.W) + self.b
         return y.permute(0, 3, 1, 2)
 
+from opacus.grad_sample import register_grad_sampler
+@register_grad_sampler(NIN)
+def compute_nin_grad_sample(layer, activations, backprops):
+    gs = torch.einsum('nkhw,nehw->nek', backprops, activations)
+    ret = {layer.W: gs}
+    ret[layer.b] = torch.einsum('nchw->nc', backprops)
+
+    return ret
 
 class AttnBlock(nn.Module):
   """Channel-wise self-attention block."""
