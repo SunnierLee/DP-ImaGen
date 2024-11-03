@@ -5,4 +5,5 @@ tqdm==4.66.1
 scipy
 matplotlib
 ninja==1.10.2
+click
 -e src/opacus
