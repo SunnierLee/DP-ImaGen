@@ -44,7 +44,7 @@ Run the following commands to install PrivImage:
  ```
 conda create -n privimage python=3.8 -y && conda activate privimage
 pip install --upgrade pip
-pip install pytorch==2.0.1 torchvision==0.15.2 torchaudio==2.0.2 pytorch-cuda=11.8 -c pytorch -c nvidia
+pip install torch==2.0.1 torchvision==0.15.2 torchaudio==2.0.2 --index-url https://download.pytorch.org/whl/cu118
 pip install -r requirements.txt 
  ```
 
