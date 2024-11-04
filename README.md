@@ -113,7 +113,7 @@ The FID of synthetic images will be saved in `/src/PRIVIMAGE/ft_dir/stdout.txt`.
 Use trained PrivImage to generate 50,000 images for training classifiers.
 
 ```
-CUDA_VISIBLE_DEVICES=0,1,2,3 python main.py --mode eval --worker_dir ft_dir/sample50000 -- model.ckpt=/src/PRIVIMAGE+D/ft_dir/checkpoints/final_checkpoint.pth
+CUDA_VISIBLE_DEVICES=0,1,2,3 python main.py --mode eval --worker_dir ft_dir/sample50000 --config configs/cifar10_32/sample_s.yaml model.ckpt=/src/PRIVIMAGE+D/ft_dir/checkpoints/final_checkpoint.pth
 cd /src/Evaluation
 python downstream_classification.py --out_dir /src/PRIVIMAGE+D/ft_dir --train_dir /src/PRIVIMAGE+D/ft_dir/sample50000/samples --test_dir data_dir --dataset cifar10
 ```
