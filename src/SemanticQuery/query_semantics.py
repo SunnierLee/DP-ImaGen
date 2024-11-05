@@ -79,7 +79,7 @@ def main(args):
     #sigma = np.sqrt(2 * np.log(1.25/args.delta)) / args.epsilon
     sigma = args.sigma1
 
-    semantics_hist = semantics_hist + torch.rand_like(semantics_hist) * sensitivity * sigma
+    semantics_hist = semantics_hist + torch.randn_like(semantics_hist) * sensitivity * sigma
 
     semantics_description = torch.topk(semantics_hist, k=args.num_words, dim=1)
 
