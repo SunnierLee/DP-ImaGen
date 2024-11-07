@@ -81,11 +81,18 @@ def main(args):
 
     semantics_hist = semantics_hist + torch.randn_like(semantics_hist) * sensitivity * sigma
 
-    semantics_description = torch.topk(semantics_hist, k=args.num_words, dim=1)
+    cls_dict = {}
+    for i in range(config.sensitive_data.n_classes):
+        semantics_hist_i = semantics_hist[i]
+        if i != 0:
+            semantics_hist_i[topk_mask] = -999
+        semantics_description_i = torch.topk(semantics_hist_i, k=config.public_data.selective.num_words)[1]
+        if i == 0:
+            topk_mask = semantics_description_i
+        else:
+            topk_mask = torch.cat([topk_mask, semantics_description_i])
+        cls_dict[i] = list(semantics_description_i.detach().cpu().numpy())
 
-    print(semantics_description[0])
-
-    cls_dict = {cls: list(semantics_description[1][cls].detach().cpu().numpy()) for cls in range(args.tar_num_classes)}
     torch.save(cls_dict, "QueryResults/chosen_top{}_classes_for_{}_epsilon{}.pth".format(args.num_words, args.tar_dataset, args.epsilon))
     print(cls_dict)
 
