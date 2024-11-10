@@ -8,6 +8,8 @@ from torchvision.datasets import ImageFolder, CIFAR10, MNIST, CelebA
 import torchvision.transforms as transforms
 from torch.utils.data import DataLoader
 
+from classifier_models import resnet
+
 
 def load_weight(net, weight_path):
     weight = torch.load(weight_path)
