@@ -84,11 +84,11 @@ def main(args):
     semantics_hist = semantics_hist + torch.randn_like(semantics_hist) * sensitivity * sigma
 
     cls_dict = {}
-    for i in range(config.sensitive_data.n_classes):
+    for i in range(args.tar_num_classes):
         semantics_hist_i = semantics_hist[i]
         if i != 0:
             semantics_hist_i[topk_mask] = -999
-        semantics_description_i = torch.topk(semantics_hist_i, k=config.public_data.selective.num_words)[1]
+        semantics_description_i = torch.topk(semantics_hist_i, k=args.num_words)[1]
         if i == 0:
             topk_mask = semantics_description_i
         else:
